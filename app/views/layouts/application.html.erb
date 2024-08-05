@@ -14,3 +14,39 @@
     <%= yield %>
   </body>
 </html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ドコイク？</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">ドコイク？</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <%= yield %>
+
+  <footer class="footer mt-auto py-3">
+    <div class="container">
+      <span class="text-muted">© 2024 ドコイク？</span>
+    </div>
+  </footer>
+</body>
+</html>
