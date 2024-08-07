@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: 'shops#search'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  devise_for :users
+  resources :shops, only: [:index, :show] do
+    collection do
+      get 'search', to: 'shops#search', as: 'search'
+      get 'results', to: 'shops#results', as: 'results'
+    end
+  end
 end

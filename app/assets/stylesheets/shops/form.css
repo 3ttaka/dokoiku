@@ -1,0 +1,73 @@
+body {
+  background-color:#efd74c
+}
+
+form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.radio-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* 空白を均等配置 */
+  margin-top: 10px;
+}
+
+.radios {
+  display: flex;
+  justify-content: space-between;
+  width: 350px; /* 幅を統一 */
+}
+
+.radio-item {
+  flex: 1;
+  text-align: center;
+}
+
+.extreme-label {
+  font-weight: bold;
+  color: #555;
+  margin: 0 10px;
+  width: 100px; /* 両端ラベルの幅を調整 */
+  text-align: center;
+}
+
+form input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
