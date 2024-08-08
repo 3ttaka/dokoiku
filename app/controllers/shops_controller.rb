@@ -7,4 +7,9 @@ class ShopsController < ApplicationController
 
   def show
   end
+
+  def new
+    @shop = Shop.new
+    
+  end
 end

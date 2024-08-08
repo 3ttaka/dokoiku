@@ -10,6 +10,17 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.integer :gender_id,         null: false
       t.integer :age_group_id,      null: false
       t.text    :profile
+      t.integer :my_cleanliness, null:false, default: 0
+      t.integer :my_space, null:false, default: 0
+      t.integer :my_lighting, null:false, default: 0
+      t.integer :my_music, null:false, default: 0
+      t.integer :my_vibrancy, null:false, default: 0
+      t.integer :my_order_speed, null:false, default: 0
+      t.integer :my_service_style, null:false, default: 0
+      t.integer :my_conversation, null:false, default: 0
+      t.integer :my_price_range
+      t.integer :my_wifi
+      t.integer :my_smoking
 
       ## Recoverable
       t.string   :reset_password_token

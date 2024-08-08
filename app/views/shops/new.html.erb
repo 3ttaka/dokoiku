@@ -1,0 +1,199 @@
+<%= form_with model: @shop, url: new_shop_path, local: true do |form| %>
+  <div class="form-container">
+    <h1>新しいお店を投稿</h1>
+
+    <div class="form-group">
+      <%= form.label :shop_name, "お店の名前（必須）" %>
+      <%= form.text_field :shop_name, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :cuisine_type, "料理ジャンル（任意）" %>
+      <%= form.text_field :cuisine_type, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :opening_hours, "営業時間（必須）" %>
+      <%= form.text_field :opening_hours, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :closed_days, "定休日（必須）" %>
+      <%= form.text_field :closed_days, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :address, "住所（必須）" %>
+      <%= form.text_field :address, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :phone_number, "電話番号（任意）" %>
+      <%= form.text_field :phone_number, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :additional_info, "追加情報（任意）" %>
+      <%= form.text_area :additional_info, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :payment_methods, "支払い方法（複数選択可）" %>
+      <div class="checkbox-group">
+        <%= form.check_box :payment_methods_array, { multiple: true }, 'cash', nil %> 現金<br>
+        <%= form.check_box :payment_methods_array, { multiple: true }, 'credit_card', nil %> クレジットカード<br>
+        <%= form.check_box :payment_methods_array, { multiple: true }, 'electronic_money', nil %> 電子マネー<br>
+        <%= form.check_box :payment_methods_array, { multiple: true }, 'qr_code', nil %> QRコード決済<br>
+      </div>
+    </div>
+    <div class="form-group">
+    <%= form.label :price_range, "価格帯", class: 'form-label' %>
+    <div class="radio-group">
+      <%= form.radio_button :price_range, 'luxury' %>
+      <%= form.label :price_range_luxury, "高級" %>
+      <%= form.radio_button :price_range, 'standard' %>
+      <%= form.label :price_range_standard, "スタンダード" %>
+      <%= form.radio_button :price_range, 'reasonable' %>
+      <%= form.label :price_range_reasonable, "リーズナブル" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :wifi, "WiFi", class: 'form-label' %>
+    <div class="radio-group">
+      <%= form.radio_button :wifi, true %>
+      <%= form.label :wifi, "あり" %>
+      <%= form.radio_button :wifi, false %>
+      <%= form.label :wifi, "なし" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :smoking, "タバコ", class: 'form-label' %>
+    <div class="radio-group">
+      <%= form.radio_button :smoking, 'indoor_allowed' %>
+      <%= form.label :smoking_indoor, "店内で喫煙可" %>
+      <%= form.radio_button :smoking, 'heated_only' %>
+      <%= form.label :smoking_heated, "加熱式のみ店内可" %>
+      <%= form.radio_button :smoking, 'outdoor_allowed' %>
+      <%= form.label :smoking_outdoor, "店外でなら喫煙可" %>
+      <%= form.radio_button :smoking, 'no_smoking' %>
+      <%= form.label :smoking_none, "喫煙不可" %>
+    </div>
+  </div>
+
+    <h2>レビューを投稿</h2>
+    
+    <h2>お店の雰囲気</h2>
+    <div class="form-group">
+    <%= form.label :cleanliness, "清潔さ", class: 'form-label' %>
+    <div class="radio-group">
+      <span class="extreme-label">ヴィンテージ</span>
+      <% (-3..3).each do |n| %>
+        <div class="radio-item">
+          <%= form.radio_button :cleanliness, n, id: "cleanliness_#{n}", checked: n == 0 %>
+        </div>
+      <% end %>
+      <span class="extreme-label">ピカピカ</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :lighting, "照明", class: 'form-label' %>
+    <div class="radio-group">
+      <span class="extreme-label">暗い</span>
+      <% (-3..3).each do |n| %>
+        <div class="radio-item">
+          <%= form.radio_button :lighting, n, id: "lighting_#{n}", checked: n == 0 %>
+        </div>
+      <% end %>
+      <span class="extreme-label">明るい</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :music, "音楽", class: 'form-label' %>
+    <div class="radio-group">
+      <span class="extreme-label">クラシック</span>
+      <% (-3..3).each do |n| %>
+        <div class="radio-item">
+          <%= form.radio_button :music, n, id: "music_#{n}", checked: n == 0 %>
+        </div>
+      <% end %>
+      <span class="extreme-label">モダン</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :space, "広さ", class: 'form-label' %>
+    <div class="radio-group">
+      <span class="extreme-label">狭い</span>
+      <% (-3..3).each do |n| %>
+        <div class="radio-item">
+          <%= form.radio_button :space, n, id: "space_#{n}", checked: n == 0 %>
+        </div>
+      <% end %>
+      <span class="extreme-label">広い</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :vibrancy, "活気", class: 'form-label' %>
+    <div class="radio-group">
+      <span class="extreme-label">しっとり</span>
+      <% (-3..3).each do |n| %>
+        <div class="radio-item">
+          <%= form.radio_button :vibrancy, n, id: "vibrancy_#{n}", checked: n == 0 %>
+        </div>
+      <% end %>
+      <span class="extreme-label">ワイワイ</span>
+    </div>
+  </div>
+
+  <h2>スタッフの雰囲気</h2>
+
+  <div class="form-group">
+    <%= form.label :order_speed, "オーダーの速さ", class: 'form-label' %>
+    <div class="radio-group">
+      <span class="extreme-label">ゆったり</span>
+      <% (-3..3).each do |n| %>
+        <div class="radio-item">
+          <%= form.radio_button :order_speed, n, id: "order_speed_#{n}", checked: n == 0 %>
+        </div>
+      <% end %>
+      <span class="extreme-label">テキパキ</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :service_style, "対応スタイル", class: 'form-label' %>
+    <div class="radio-group">
+      <span class="extreme-label">ジェントル</span>
+      <% (-3..3).each do |n| %>
+        <div class="radio-item">
+          <%= form.radio_button :service_style, n, id: "service_style_#{n}", checked: n == 0 %>
+        </div>
+      <% end %>
+      <span class="extreme-label">フレンドリー</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :conversation, "会話", class: 'form-label' %>
+    <div class="radio-group">
+      <span class="extreme-label">寡黙</span>
+      <% (-3..3).each do |n| %>
+        <div class="radio-item">
+          <%= form.radio_button :conversation, n, id: "conversation_#{n}", checked: n == 0 %>
+        </div>
+      <% end %>
+      <span class="extreme-label">おしゃべり</span>
+    </div>
+  </div>
+    
+
+    <div class="form-group">
+      <%= form.submit "投稿する", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
