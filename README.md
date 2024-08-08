@@ -9,6 +9,17 @@
 | gender_id           | integer   | null: false |
 | age_group_id        | integer   | null: false |
 | profile             | text      |             |
+| my_cleanliness      | integer   | null: false, default: 0 |
+| my_space            | integer   | null: false, default: 0 | 
+| my_lighting         | integer   | null: false, default: 0 |
+| my_music            | integer   | null: false, default: 0 |
+| my_vibrancy         | integer   | null: false, default: 0 |
+| my_order_speed      | integer   | null: false, default: 0 |
+| my_service_style    | integer   | null: false, default: 0 |
+| my_conversation     | integer   | null: false, default: 0 |
+| my_price_range      | integer   |                         |
+| wifi                | integer   |                         |
+| smoking             | integer   |                         |
 
 ### Association
 
@@ -20,15 +31,15 @@
 | Colum                 | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
 | shop_name             | string     | null: false                    |
-| cuisine_type          | string     | null: false                    |
+| cuisine_type          | string     |                                |
 | closed_days           | string     | null: false                    |
 | opening_hours         | string     | null: false                    |
 | address               | string     | null: false                    |
 | phone_number          | string     |                                |
 | additional_info       | text       |                                |
-| wifi                  | integer    | default: nil                   |
-| smoking               | integer    | default: nil                   |
-| payment_methods       | string     | array: true, default: []       |
+| wifi                  | integer    |                                |
+| smoking               | integer    |                                |
+| payment_methods       | string     | null: false, default: ""       |
 | cleanliness_average   | float      | null: false, default: 0.0      |
 | space_average         | float      | null: false, default: 0.0      |
 | lighting_average      | float      | null: false, default: 0.0      |
@@ -37,7 +48,7 @@
 | order_speed_average   | float      | null: false, default: 0.0      |
 | service_style_average | float      | null: false, default: 0.0      |
 | conversation_average  | float      | null: false, default: 0.0      |
-| modal_price_range     | float      | null: false, default: 0.0      |
+| modal_price_range     | float      |                                |
 | user                  | references | null: false, foreign_key: true |
 
 
