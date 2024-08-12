@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_08_025919) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_08_113722) do
+  create_table "reviews", charset: "utf8", force: :cascade do |t|
+    t.integer "cleanliness", default: 0, null: false
+    t.integer "space", default: 0, null: false
+    t.integer "lighting", default: 0, null: false
+    t.integer "music", default: 0, null: false
+    t.integer "vibrancy", default: 0, null: false
+    t.integer "order_speed", default: 0, null: false
+    t.integer "service_style", default: 0, null: false
+    t.integer "conversation", default: 0, null: false
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.bigint "shop_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_reviews_on_shop_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "shops", charset: "utf8", force: :cascade do |t|
     t.string "shop_name", null: false
     t.string "cuisine_type"
@@ -19,18 +37,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_08_025919) do
     t.string "address", null: false
     t.string "phone_number"
     t.text "additional_info"
-    t.integer "wifi"
-    t.integer "smoking"
+    t.string "wifi"
+    t.string "smoking"
     t.string "payment_methods", default: "", null: false
-    t.float "cleanliness_average", default: 0.0, null: false
-    t.float "space_average", default: 0.0, null: false
-    t.float "lighting_average", default: 0.0, null: false
-    t.float "music_average", default: 0.0, null: false
-    t.float "vibrancy_average", default: 0.0, null: false
-    t.float "order_speed_average", default: 0.0, null: false
-    t.float "service_style_average", default: 0.0, null: false
-    t.float "conversation_average", default: 0.0, null: false
-    t.float "modal_price_range"
+    t.string "price_range", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,5 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_08_025919) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reviews", "shops"
+  add_foreign_key "reviews", "users"
   add_foreign_key "shops", "users"
 end
