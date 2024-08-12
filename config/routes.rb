@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     collection do
       get 'search', to: 'shops#search', as: 'search'
     end
-    resources :review, only: [:new, :create]
+    resources :reviews, only: [:new, :create]
   end
 end
