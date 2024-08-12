@@ -1,0 +1,119 @@
+<%= form_with model: @review, url: shop_reviews_path(@shop), local: true do |form| %>
+  <%= render 'shared/error_messages', model: @review %>
+  <div class="form-container">
+    <h1>レビューを投稿</h1>
+
+    <div class="form-group">
+      <%= form.label :cleanliness, "清潔さ", class: 'form-label' %>
+      <div class="radio-group">
+        <span class="extreme-label">ヴィンテージ</span>
+        <% (-3..3).each do |n| %>
+          <div class="radio-item">
+            <%= form.radio_button :cleanliness, n, id: "cleanliness_#{n}", checked: n == 0 %>
+          </div>
+        <% end %>
+        <span class="extreme-label">ピカピカ</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :lighting, "照明", class: 'form-label' %>
+      <div class="radio-group">
+        <span class="extreme-label">暗い</span>
+        <% (-3..3).each do |n| %>
+          <div class="radio-item">
+            <%= form.radio_button :lighting, n, id: "lighting_#{n}", checked: n == 0 %>
+          </div>
+        <% end %>
+        <span class="extreme-label">明るい</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :music, "音楽", class: 'form-label' %>
+      <div class="radio-group">
+        <span class="extreme-label">クラシック</span>
+        <% (-3..3).each do |n| %>
+          <div class="radio-item">
+            <%= form.radio_button :music, n, id: "music_#{n}", checked: n == 0 %>
+          </div>
+        <% end %>
+        <span class="extreme-label">モダン</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :space, "広さ", class: 'form-label' %>
+      <div class="radio-group">
+        <span class="extreme-label">狭い</span>
+        <% (-3..3).each do |n| %>
+          <div class="radio-item">
+            <%= form.radio_button :space, n, id: "space_#{n}", checked: n == 0 %>
+          </div>
+        <% end %>
+        <span class="extreme-label">広い</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :vibrancy, "活気", class: 'form-label' %>
+      <div class="radio-group">
+        <span class="extreme-label">しっとり</span>
+        <% (-3..3).each do |n| %>
+          <div class="radio-item">
+            <%= form.radio_button :vibrancy, n, id: "vibrancy_#{n}", checked: n == 0 %>
+          </div>
+        <% end %>
+        <span class="extreme-label">ワイワイ</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :order_speed, "オーダーの速さ", class: 'form-label' %>
+      <div class="radio-group">
+        <span class="extreme-label">ゆったり</span>
+        <% (-3..3).each do |n| %>
+          <div class="radio-item">
+            <%= form.radio_button :order_speed, n, id: "order_speed_#{n}", checked: n == 0 %>
+          </div>
+        <% end %>
+        <span class="extreme-label">テキパキ</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :service_style, "対応スタイル", class: 'form-label' %>
+      <div class="radio-group">
+        <span class="extreme-label">ジェントル</span>
+        <% (-3..3).each do |n| %>
+          <div class="radio-item">
+            <%= form.radio_button :service_style, n, id: "service_style_#{n}", checked: n == 0 %>
+          </div>
+        <% end %>
+        <span class="extreme-label">フレンドリー</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :conversation, "会話", class: 'form-label' %>
+      <div class="radio-group">
+        <span class="extreme-label">寡黙</span>
+        <% (-3..3).each do |n| %>
+          <div class="radio-item">
+            <%= form.radio_button :conversation, n, id: "conversation_#{n}", checked: n == 0 %>
+          </div>
+        <% end %>
+        <span class="extreme-label">おしゃべり</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :description, "レビュー詳細", class: 'form-label' %>
+      <%= form.text_area :description, class: 'form-control', placeholder:"レビューの詳細を記入してください", rows: 5 %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "レビューを投稿する", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
