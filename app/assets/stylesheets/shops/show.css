@@ -1,0 +1,98 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.shop-details p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.sd-evaluation {
+  margin-top: 30px;
+}
+
+.evaluation-item {
+  margin-bottom: 30px;
+}
+
+.evaluation-item .label-top {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.label-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.evaluation-item .label-left,
+.evaluation-item .label-right {
+  width: 80px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.evaluation-item .bar {
+  position: relative;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  width: 60%;
+  height: 20px;
+  margin: 0 10px;
+  overflow: hidden;
+}
+
+.evaluation-item .bar .neutral {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background-color: #333;
+}
+
+.evaluation-item .bar .fill {
+  position: absolute;
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  min-width: 10px; /* 最小幅を設定 */
+  transform-origin: left center; /* ゲージの原点を左側に設定 */
+}
+
+.evaluation-item .bar .fill.positive {
+  left: 50%; /* 中央から右に伸びる */
+  transform: translateX(0); /* 左から右に伸びるように設定 */
+  background-color: #4CAF50; /* ポジティブなスコアの場合の色 */
+}
+
+.evaluation-item .bar .fill.negative {
+  right: 50%; /* 中央から左に伸びる */
+  transform: translateX(0); /* 右から左に伸びるように設定 */
+  background-color: #FF5722; /* 負の値の場合の色 */
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions .btn {
+  font-size: 1.1em;
+  padding: 10px 20px;
+}
