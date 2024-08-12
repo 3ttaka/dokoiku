@@ -2,9 +2,11 @@ class ShopsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def search
+    
   end
 
-  def results
+  def index
+    @shops = Shop.search(params[:keyword])
   end
 
   def show
