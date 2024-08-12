@@ -2,9 +2,12 @@
 
 <h1>お店を検索</h1>
 
-<%= form_with url: results_shops_path, method: :get, local: true do |form| %>
+<%= form_with url: shops_path, method: :get, local: true do |form| %>
+  <h2>店名で検索する</h2>
+  <%= form.text_field :keyword, placeholder: "検索キーワードを入力", class: "search-input" %>
+  <%= form.submit "検索", class: "search-btn" %>
+  <h2>雰囲気で検索する</h2>
   <h2>お店の雰囲気</h2>
-
   <div class="form-group">
     <%= form.label :cleanliness, "清潔さ", class: 'form-label' %>
     <div class="radio-group">
