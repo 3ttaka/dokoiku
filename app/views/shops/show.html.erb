@@ -1,2 +1,19 @@
-<h1>Shops#show</h1>
-<p>Find me in app/views/shops/show.html.erb</p>
+<div class="container">
+  <h1><%= @shop.shop_name %> の詳細</h1>
+
+  <div class="shop-details">
+    <p><strong>お店の名前:</strong> <%= @shop.shop_name %></p>
+    <p><strong>住所:</strong> <%= @shop.address %></p>
+    <p><strong>営業時間:</strong> <%= @shop.opening_hours %></p>
+    <p><strong>定休日:</strong> <%= @shop.closed_days %></p>
+    <p><strong>電話番号:</strong> <%= @shop.phone_number %></p>
+    <p><strong>追加情報:</strong> <%= @shop.additional_info %></p>
+    <p><strong>支払い方法:</strong> <%= @shop.payment_methods %></p>
+    <p><strong>WiFi:</strong> <%= @shop.wifi ? 'あり' : 'なし' %></p>
+    <p><strong>タバコ:</strong> <%= @shop.smoking %></p>
+    <p><strong>価格帯:</strong> <%= @shop.price_range %></p>
+  </div>
+
+
+  <%= link_to '一覧に戻る', shops_path, class: 'btn btn-secondary' %>
+</div>
