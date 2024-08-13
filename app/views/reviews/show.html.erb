@@ -163,7 +163,7 @@
     <h2>写真</h2>
     <div class="review-images">
       <% @review.images.each do |image| %>
-        <%= image_tag image, class: "img-thumbnail" %>
+        <%= image_tag image.variant(resize: '500x500'), class: "img-thumbnail" %>
       <% end %>
     </div>
   <% end %>
