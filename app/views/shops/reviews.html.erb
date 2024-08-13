@@ -1,0 +1,32 @@
+<div class="container">
+  <h1><%= @shop.shop_name %> のレビュー 一覧</h1>
+
+  <% if @reviews.any? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ユーザー</th>
+          <th>性別</th>
+          <th>年代</th>
+          <th>投稿日</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><%= review.user.nickname %></td>
+            <td><%= review.user.gender.name %></td>
+            <td><%= review.user.age_group.name %></td>
+            <td><%= review.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= link_to '詳細を見る', shop_review_path(@shop, review), class: 'btn btn-primary' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>まだレビューが投稿されていません。</p>
+  <% end %>
+
+  <%= link_to 'お店の詳細に戻る', shop_path(@shop), class: 'btn btn-secondary' %>
+</div>

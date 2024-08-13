@@ -50,6 +50,11 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
   end
 
+  def reviews
+    @shop = Shop.find(params[:id])
+    @reviews = @shop.reviews
+  end
+
   def new
     @shop_review = ShopReview.new
     
