@@ -52,7 +52,7 @@ class ShopsController < ApplicationController
 
   def reviews
     @shop = Shop.find(params[:id])
-    @reviews = @shop.reviews
+    
   end
 
   def new

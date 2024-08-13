@@ -1,21 +1,15 @@
+<!-- reviews/show.html.erb -->
 <div class="container">
-  <h1><%= @shop.shop_name %> の詳細</h1>
+  <h1><%= @review.shop.shop_name %> のレビュー詳細</h1>
 
-  <div class="shop-details">
-    <p><strong>お店の名前:</strong> <%= @shop.shop_name %></p>
-    <p><strong>住所:</strong> <%= @shop.address %></p>
-    <p><strong>営業時間:</strong> <%= @shop.opening_hours %></p>
-    <p><strong>定休日:</strong> <%= @shop.closed_days %></p>
-    <p><strong>電話番号:</strong> <%= @shop.phone_number %></p>
-    <p><strong>追加情報:</strong> <%= @shop.additional_info %></p>
-    <p><strong>支払い方法:</strong> <%= @shop.payment_methods %></p>
-    <p><strong>WiFi:</strong> <%= @shop.wifi ? 'あり' : 'なし' %></p>
-    <p><strong>タバコ:</strong> <%= @shop.smoking %></p>
-    <p><strong>価格帯:</strong> <%= @shop.price_range %></p>
+  <div class="review-detail">
+    <p><strong>ユーザー:</strong> <%= @review.user.nickname %></p>
+    <p><strong>性別:</strong> <%= @review.user.gender.name %></p>
+    <p><strong>年代:</strong> <%= @review.user.age_group.name %></p>
+    <p><strong>投稿日:</strong> <%= @review.created_at.strftime("%Y-%m-%d") %></p>
   </div>
 
-  <h2>レビューの平均評価</h2>
-
+  <h2>評価</h2>
   <div class="sd-evaluation">
     <!-- 清潔さ -->
     <div class="evaluation-item">
@@ -24,7 +18,7 @@
         <span class="label-left">ヴィンテージ</span>
         <div class="bar">
           <div class="neutral"></div>
-          <% cleanliness_score = @shop.average_cleanliness %>
+          <% cleanliness_score = @review.cleanliness %>
           <% cleanliness_width = cleanliness_score.abs / 3.0 * 50 %>
           <% if cleanliness_score != 0 %>
             <div class="fill <%= cleanliness_score.positive? ? 'positive' : 'negative' %>" 
@@ -42,7 +36,7 @@
         <span class="label-left">暗い</span>
         <div class="bar">
           <div class="neutral"></div>
-          <% lighting_score = @shop.average_lighting %>
+          <% lighting_score = @review.lighting %>
           <% lighting_width = lighting_score.abs / 3.0 * 50 %>
           <% if lighting_score != 0 %>
             <div class="fill <%= lighting_score.positive? ? 'positive' : 'negative' %>" 
@@ -60,7 +54,7 @@
         <span class="label-left">クラシック</span>
         <div class="bar">
           <div class="neutral"></div>
-          <% music_score = @shop.average_music %>
+          <% music_score = @review.music %>
           <% music_width = music_score.abs / 3.0 * 50 %>
           <% if music_score != 0 %>
             <div class="fill <%= music_score.positive? ? 'positive' : 'negative' %>" 
@@ -78,7 +72,7 @@
         <span class="label-left">狭い</span>
         <div class="bar">
           <div class="neutral"></div>
-          <% space_score = @shop.average_space %>
+          <% space_score = @review.space %>
           <% space_width = space_score.abs / 3.0 * 50 %>
           <% if space_score != 0 %>
             <div class="fill <%= space_score.positive? ? 'positive' : 'negative' %>" 
@@ -96,7 +90,7 @@
         <span class="label-left">しっとり</span>
         <div class="bar">
           <div class="neutral"></div>
-          <% vibrancy_score = @shop.average_vibrancy %>
+          <% vibrancy_score = @review.vibrancy %>
           <% vibrancy_width = vibrancy_score.abs / 3.0 * 50 %>
           <% if vibrancy_score != 0 %>
             <div class="fill <%= vibrancy_score.positive? ? 'positive' : 'negative' %>" 
@@ -114,7 +108,7 @@
         <span class="label-left">ゆったり</span>
         <div class="bar">
           <div class="neutral"></div>
-          <% order_speed_score = @shop.average_order_speed %>
+          <% order_speed_score = @review.order_speed %>
           <% order_speed_width = order_speed_score.abs / 3.0 * 50 %>
           <% if order_speed_score != 0 %>
             <div class="fill <%= order_speed_score.positive? ? 'positive' : 'negative' %>" 
@@ -132,7 +126,7 @@
         <span class="label-left">ジェントル</span>
         <div class="bar">
           <div class="neutral"></div>
-          <% service_style_score = @shop.average_service_style %>
+          <% service_style_score = @review.service_style %>
           <% service_style_width = service_style_score.abs / 3.0 * 50 %>
           <% if service_style_score != 0 %>
             <div class="fill <%= service_style_score.positive? ? 'positive' : 'negative' %>" 
@@ -150,7 +144,7 @@
         <span class="label-left">寡黙</span>
         <div class="bar">
           <div class="neutral"></div>
-          <% conversation_score = @shop.average_conversation %>
+          <% conversation_score = @review.conversation %>
           <% conversation_width = conversation_score.abs / 3.0 * 50 %>
           <% if conversation_score != 0 %>
             <div class="fill <%= conversation_score.positive? ? 'positive' : 'negative' %>" 
@@ -162,10 +156,19 @@
     </div>
   </div>
 
+  <h2>説明</h2>
+  <p><%= @review.description %></p>
+
+  <% if @review.images.attached? %>
+    <h2>写真</h2>
+    <div class="review-images">
+      <% @review.images.each do |image| %>
+        <%= image_tag image, class: "img-thumbnail" %>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="actions">
-    <%= link_to 'レビューを投稿する', new_shop_review_path(@shop), class: 'btn btn-primary' %>
-    <%= link_to 'レビュー 一覧を見る', reviews_shop_path(@shop), class: 'btn btn-primary' %>
-    <%= link_to '写真一覧を見る', photos_shop_path(@shop), class: 'btn btn-secondary' %>
-    <%= link_to 'お店一覧に戻る', shops_path, class: 'btn btn-secondary' %>
+    <%= link_to 'レビュー 一覧に戻る', reviews_shop_path(@review.shop), class: 'btn btn-secondary' %>
   </div>
 </div>

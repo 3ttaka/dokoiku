@@ -1,7 +1,7 @@
 <div class="container">
   <h1><%= @shop.shop_name %> のレビュー 一覧</h1>
 
-  <% if @reviews.any? %>
+  <% if @shop.reviews.any? %>
     <table class="table">
       <thead>
         <tr>
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @reviews.each do |review| %>
+        <% @shop.reviews.each do |review| %>
           <tr>
             <td><%= review.user.nickname %></td>
             <td><%= review.user.gender.name %></td>
