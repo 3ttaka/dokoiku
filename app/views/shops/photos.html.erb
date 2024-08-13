@@ -1,0 +1,18 @@
+<!-- app/views/shops/photos.html.erb -->
+<div class="container">
+  <h1><%= @shop.shop_name %> の写真一覧</h1>
+
+  <% if @photos.any? %>
+    <div class="photo-gallery">
+      <% @photos.each do |photo| %>
+        <%= image_tag photo.variant(resize: '500x500'), class: "img-thumbnail" %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>このお店にはまだ写真が投稿されていません。</p>
+  <% end %>
+
+  <div class="actions">
+    <%= link_to 'お店の詳細に戻る', shop_path(@shop), class: 'btn btn-secondary' %>
+  </div>
+</div>

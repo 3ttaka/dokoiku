@@ -13,7 +13,8 @@ h1 {
   text-align: center;
 }
 
-.shop-details p {
+.shop-details p,
+.review-details p {
   font-size: 1.1em;
   margin-bottom: 10px;
 }
@@ -70,20 +71,18 @@ h1 {
   height: 100%;
   border-radius: 10px;
   transition: width 0.3s ease;
-  min-width: 10px; /* 最小幅を設定 */
+  min-width: 0; /* 最小幅を設定 */
   transform-origin: left center; /* ゲージの原点を左側に設定 */
 }
 
 .evaluation-item .bar .fill.positive {
   left: 50%; /* 中央から右に伸びる */
   transform: translateX(0); /* 左から右に伸びるように設定 */
-  background-color: #4CAF50; /* ポジティブなスコアの場合の色 */
 }
 
 .evaluation-item .bar .fill.negative {
   right: 50%; /* 中央から左に伸びる */
   transform: translateX(0); /* 右から左に伸びるように設定 */
-  background-color: #FF5722; /* 負の値の場合の色 */
 }
 
 .actions {

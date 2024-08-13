@@ -5,12 +5,20 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    review = Review.create(review_params)
-    redirect_to "/shops/#{review.shop.id}"
+    @review = Review.new(review_params)
+    if @review.save
+      redirect_to shop_path(@review.shop), notice: 'レビューが投稿されました。'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def show
+    @review = Review.find(params[:id])
   end
 
   private
   def review_params
-    params.require(:review).permit(:cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :description).merge(user_id: current_user.id, shop_id: params[:shop_id])
+    params.require(:review).permit(:cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :description, images: []).merge(user_id: current_user.id, shop_id: params[:shop_id])
   end
 end

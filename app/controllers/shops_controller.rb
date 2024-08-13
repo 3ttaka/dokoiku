@@ -50,6 +50,15 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
   end
 
+  def reviews
+    @shop = Shop.find(params[:id])    
+  end
+
+  def photos
+    @shop = Shop.find(params[:id])
+    @photos = @shop.reviews.map(&:images).flatten
+  end
+
   def new
     @shop_review = ShopReview.new
     

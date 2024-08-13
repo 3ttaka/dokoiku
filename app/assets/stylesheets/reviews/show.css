@@ -1,0 +1,18 @@
+.review-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* 画像間のスペースを設定 */
+  justify-content: center; /* 画像を中央揃えにする */
+}
+
+.review-images .img-thumbnail {
+  width: calc(50% - 10px); /* 2枚ずつ並べるために50%の幅を指定し、ギャップを引いたサイズを適用 */
+  max-width: 500px; /* 画像の最大幅を設定 */
+  margin-bottom: 20px; /* 画像の下にスペースを追加 */
+}
+
+@media (max-width: 600px) {
+  .review-images .img-thumbnail {
+    width: 100%; /* 画面幅が狭い場合は1枚ずつ表示 */
+  }
+}
