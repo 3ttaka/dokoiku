@@ -14,8 +14,141 @@
     <p><strong>価格帯:</strong> <%= @shop.price_range %></p>
   </div>
 
-  
+  <h2>レビューの平均評価</h2>
 
-  <%= link_to 'レビューを投稿する', new_shop_review_path(@shop), class: 'btn btn-primary' %>
-  <%= link_to '一覧に戻る', shops_path, class: 'btn btn-secondary' %>
+  <div class="sd-evaluation">
+    <!-- 清潔さ -->
+    <div class="evaluation-item">
+      <span class="label-top">清潔さ</span>
+      <div class="label-container">
+        <span class="label-left">ヴィンテージ</span>
+        <div class="bar">
+          <div class="neutral"></div>
+          <% cleanliness_score = @shop.average_cleanliness %>
+          <% cleanliness_width = cleanliness_score.abs / 3.0 * 50 %>
+          <div class="fill <%= cleanliness_score.positive? ? 'positive' : 'negative' %>" 
+               style="width: <%= cleanliness_width %>%;"></div>
+        </div>
+        <span class="label-right">ピカピカ</span>
+      </div>
+    </div>
+
+    <!-- 照明 -->
+    <div class="evaluation-item">
+      <span class="label-top">照明</span>
+      <div class="label-container">
+        <span class="label-left">暗い</span>
+        <div class="bar">
+          <div class="neutral"></div>
+          <% lighting_score = @shop.average_lighting %>
+          <% lighting_width = lighting_score.abs / 3.0 * 50 %>
+          <div class="fill <%= lighting_score.positive? ? 'positive' : 'negative' %>" 
+               style="width: <%= lighting_width %>%;"></div>
+        </div>
+        <span class="label-right">明るい</span>
+      </div>
+    </div>
+
+    <!-- 音楽 -->
+    <div class="evaluation-item">
+      <span class="label-top">音楽</span>
+      <div class="label-container">
+        <span class="label-left">クラシック</span>
+        <div class="bar">
+          <div class="neutral"></div>
+          <% music_score = @shop.average_music %>
+          <% music_width = music_score.abs / 3.0 * 50 %>
+          <div class="fill <%= music_score.positive? ? 'positive' : 'negative' %>" 
+               style="width: <%= music_width %>%;"></div>
+        </div>
+        <span class="label-right">モダン</span>
+      </div>
+    </div>
+
+    <!-- 広さ -->
+    <div class="evaluation-item">
+      <span class="label-top">広さ</span>
+      <div class="label-container">
+        <span class="label-left">狭い</span>
+        <div class="bar">
+          <div class="neutral"></div>
+          <% space_score = @shop.average_space %>
+          <% space_width = space_score.abs / 3.0 * 50 %>
+          <div class="fill <%= space_score.positive? ? 'positive' : 'negative' %>" 
+               style="width: <%= space_width %>%;"></div>
+        </div>
+        <span class="label-right">広い</span>
+      </div>
+    </div>
+
+    <!-- 活気 -->
+    <div class="evaluation-item">
+      <span class="label-top">活気</span>
+      <div class="label-container">
+        <span class="label-left">しっとり</span>
+        <div class="bar">
+          <div class="neutral"></div>
+          <% vibrancy_score = @shop.average_vibrancy %>
+          <% vibrancy_width = vibrancy_score.abs / 3.0 * 50 %>
+          <div class="fill <%= vibrancy_score.positive? ? 'positive' : 'negative' %>" 
+               style="width: <%= vibrancy_width %>%;"></div>
+        </div>
+        <span class="label-right">ワイワイ</span>
+      </div>
+    </div>
+
+    <!-- オーダーの速さ -->
+    <div class="evaluation-item">
+      <span class="label-top">オーダーの速さ</span>
+      <div class="label-container">
+        <span class="label-left">ゆったり</span>
+        <div class="bar">
+          <div class="neutral"></div>
+          <% order_speed_score = @shop.average_order_speed %>
+          <% order_speed_width = order_speed_score.abs / 3.0 * 50 %>
+          <div class="fill <%= order_speed_score.positive? ? 'positive' : 'negative' %>" 
+               style="width: <%= order_speed_width %>%;"></div>
+        </div>
+        <span class="label-right">テキパキ</span>
+      </div>
+    </div>
+
+    <!-- 対応スタイル -->
+    <div class="evaluation-item">
+      <span class="label-top">対応スタイル</span>
+      <div class="label-container">
+        <span class="label-left">ジェントル</span>
+        <div class="bar">
+          <div class="neutral"></div>
+          <% service_style_score = @shop.average_service_style %>
+          <% service_style_width = service_style_score.abs / 3.0 * 50 %>
+          <div class="fill <%= service_style_score.positive? ? 'positive' : 'negative' %>" 
+               style="width: <%= service_style_width %>%;"></div>
+        </div>
+        <span class="label-right">フレンドリー</span>
+      </div>
+    </div>
+
+    <!-- 会話 -->
+    <div class="evaluation-item">
+      <span class="label-top">会話</span>
+      <div class="label-container">
+        <span class="label-left">寡黙</span>
+        <div class="bar">
+          <div class="neutral"></div>
+          <% conversation_score = @shop.average_conversation %>
+          <% conversation_width = conversation_score.abs / 3.0 * 50 %>
+          <div class="fill <%= conversation_score.positive? ? 'positive' : 'negative' %>" 
+               style="width: <%= conversation_width %>%;"></div>
+        </div>
+        <span class="label-right">おしゃべり</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= link_to 'レビューを投稿する', new_shop_review_path(@shop), class: 'btn btn-primary' %>
+    <%= link_to '一覧に戻る', shops_path, class: 'btn btn-secondary' %>
+  </div>
 </div>
+
