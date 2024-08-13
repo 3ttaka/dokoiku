@@ -1,0 +1,24 @@
+.photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.photo-gallery .img-thumbnail {
+  width: calc(33.333% - 20px); /* 3列で並べる */
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 800px) {
+  .photo-gallery .img-thumbnail {
+    width: calc(50% - 20px); /* 画面幅が狭い場合は2列で表示 */
+  }
+}
+
+@media (max-width: 600px) {
+  .photo-gallery .img-thumbnail {
+    width: 100%; /* 画面幅がさらに狭い場合は1列で表示 */
+  }
+}
