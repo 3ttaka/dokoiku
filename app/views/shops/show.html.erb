@@ -1,5 +1,10 @@
 <div class="container">
   <h1><%= @shop.shop_name %> の詳細</h1>
+  <div id="map" style="height: 400px;" data-controller="map" data-map-latitude-target="latitude" data-map-longitude-target="longitude">
+    <%= hidden_field_tag :latitude, @shop.latitude, id: "shop_latitude", data: { map_target: "latitude" } %>
+    <%= hidden_field_tag :longitude, @shop.longitude, id: "shop_longitude", data: { map_target: "longitude" } %>
+  </div>
+
 
   <div class="shop-details">
     <p><strong>お店の名前:</strong> <%= @shop.shop_name %></p>
