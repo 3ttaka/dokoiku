@@ -1,7 +1,7 @@
 class ShopReview
   include ActiveModel::Model
 
-  attr_accessor :shop_name, :cuisine_type, :closed_days, :opening_hours, :address, :phone_number, :additional_info, :wifi, :smoking, :payment_methods, :price_range
+  attr_accessor :shop_name, :cuisine_type, :closed_days, :opening_hours, :address, :phone_number, :additional_info, :wifi, :smoking, :latitude, :longitude, :payment_methods, :price_range
   attr_accessor :cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :price_range, :description
   attr_accessor :user_id
 
@@ -27,7 +27,9 @@ class ShopReview
       smoking: smoking,
       payment_methods: payment_methods,
       price_range: price_range,
-      user_id: user_id
+      user_id: user_id,
+      latitude: latitude,
+      longitude: longitude
     )
 
     Review.create(

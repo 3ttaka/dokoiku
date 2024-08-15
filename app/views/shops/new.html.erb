@@ -1,4 +1,7 @@
 <%= form_with model: @shop_review, url: shops_path, local: true do |form| %>
+  <div id="map" style="height: 400px;" data-controller="map" data-map-latitude-target="latitude" data-map-longitude-target="longitude">
+  <%= form.hidden_field :latitude, id: "shop_latitude", data: { map_target: "latitude" } %>
+  <%= form.hidden_field :longitude, id: "shop_longitude", data: { map_target: "longitude" } %></div>
   <%= render 'shared/error_messages', model: @shop_review %>
   <div class="form-container">
     <h1>新しいお店を投稿</h1>
