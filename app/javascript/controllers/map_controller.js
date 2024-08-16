@@ -27,7 +27,7 @@ export default class extends Controller {
 
     // ピンを設定
     this.marker = L.marker([latitude, longitude], { icon: shopIcon, draggable: !hasCoordinates }).addTo(this.map);
-
+console.log(latitude, longitude)
     // 詳細画面ではピンを移動できないようにするため、hasCoordinatesがある場合、クリックイベントを無効化
     if (!hasCoordinates) {
       this.map.locate({ setView: true, maxZoom: 16 });
@@ -43,6 +43,17 @@ export default class extends Controller {
       });
 
       this.map.on("click", this.onMapClick.bind(this));
+      this.marker.on("dragend", (event) => {
+        const marker = event.target;
+        const position = marker.getLatLng();
+      
+        console.log("Latitude: " + position.lat);
+        console.log("Longitude: " + position.lng);
+      
+        // 必要に応じて、ここで緯度経度をフォームなどにセット
+        this.latitudeTarget.value = position.lat;
+        this.longitudeTarget.value = position.lng;
+      })
     } else {
       // 現在地を表示するために、ユーザーの現在地をピン付け
       this.map.locate({ setView: false, maxZoom: 16 });

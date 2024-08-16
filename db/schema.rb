@@ -72,8 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_15_043325) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
+    t.decimal "latitude", precision: 17, scale: 14
+    t.decimal "longitude", precision: 17, scale: 14
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
 
