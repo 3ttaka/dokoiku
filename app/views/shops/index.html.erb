@@ -1,3 +1,10 @@
+<div id="map" data-controller="map">
+  <input type="hidden" id="shop_latitudes" value="<%= @shops.map(&:latitude).to_json %>" data-map-target="shopLatitudes">
+  <input type="hidden" id="shop_longitudes" value="<%= @shops.map(&:longitude).to_json %>" data-map-target="shopLongitudes">
+  <input type="hidden" id="shop_names" value="<%= @shops.map(&:shop_name).to_json %>" data-map-target="shopNames">
+  <input type="hidden" id="shop_ids" value="<%= @shops.map(&:id).to_json %>" data-map-target="shopIds">
+</div>
+
 <% if @shops.any? %>
   <table class="table">
     <thead>
