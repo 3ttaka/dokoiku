@@ -14,11 +14,13 @@ export default class extends Controller {
     const defaultLat = 35.6895;
     const defaultLng = 139.6917;
 
+    // 一覧画面用の変数
     const latitudes = this.hasShopLatitudesTarget ? JSON.parse(this.shopLatitudesTarget.value) : [];
     const longitudes = this.hasShopLongitudesTarget ? JSON.parse(this.shopLongitudesTarget.value) : [];
     const names = this.hasShopNamesTarget ? JSON.parse(this.shopNamesTarget.value) : [];
     const ids = this.hasShopIdsTarget ? JSON.parse(this.shopIdsTarget.value) : [];
 
+    // 地図を初期化
     this.map = L.map(this.element).setView([defaultLat, defaultLng], 13);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -32,8 +34,9 @@ export default class extends Controller {
       popupAnchor: [0, -60]
     });
 
+    // 一覧画面の処理
     if (latitudes.length > 0 && longitudes.length > 0) {
-      // 一覧画面: 複数の店舗のピンを配置
+      // 複数の店舗のピンを配置
       latitudes.forEach((lat, index) => {
         const lng = longitudes[index];
         const name = names[index];
@@ -66,40 +69,51 @@ export default class extends Controller {
       });
 
     } else if (this.hasLatitudeTarget && this.hasLongitudeTarget) {
+      // 投稿画面、詳細画面、編集画面の処理
       const hasCoordinates = this.latitudeTarget.value && this.longitudeTarget.value;
       const latitude = hasCoordinates ? parseFloat(this.latitudeTarget.value) : defaultLat;
       const longitude = hasCoordinates ? parseFloat(this.longitudeTarget.value) : defaultLng;
 
-      this.marker = L.marker([latitude, longitude], { icon: shopIcon, draggable: !hasCoordinates }).addTo(this.map);
-
-      if (!hasCoordinates) {
-        // 投稿画面: ユーザーの現在地を取得してピンを配置
+      // 投稿画面
+      if (!hasCoordinates && this.isPostPage()) {
         this.map.locate({ setView: true, maxZoom: 16 });
 
         this.map.on("locationfound", (e) => {
-          this.marker.setLatLng(e.latlng);
+          this.marker = L.marker(e.latlng, { icon: shopIcon, draggable: true }).addTo(this.map);
           this.latitudeTarget.value = e.latlng.lat;
           this.longitudeTarget.value = e.latlng.lng;
-          this.map.setView(e.latlng, 16); // 現在地を取得後に再度中央にセット
+          this.map.setView(e.latlng, 16);
         });
 
         this.map.on("click", this.onMapClick.bind(this));
-        this.marker.on("dragend", (event) => {
+        this.marker?.on("dragend", (event) => {
           const marker = event.target;
           const position = marker.getLatLng();
           this.latitudeTarget.value = position.lat;
           this.longitudeTarget.value = position.lng;
         });
       } else {
+        // 詳細画面と編集画面
+        this.marker = L.marker([latitude, longitude], { icon: shopIcon, draggable: this.isEditPage() }).addTo(this.map);
         this.map.setView([latitude, longitude], 16);
-        this.marker.setLatLng([latitude, longitude]);
 
-        // 現在地も表示する
-        this.map.locate({ setView: false, maxZoom: 16 });
+        if (this.isEditPage()) {
+          this.marker.on("dragend", (event) => {
+            const marker = event.target;
+            const position = marker.getLatLng();
+            this.latitudeTarget.value = position.lat;
+            this.longitudeTarget.value = position.lng;
+          });
+        }
 
-        this.map.on("locationfound", (e) => {
-          L.marker(e.latlng).addTo(this.map).bindPopup("現在地").openPopup();
-        });
+        // 現在地も表示する（詳細画面の場合）
+        if (this.isDetailPage()) {
+          this.map.locate({ setView: false, maxZoom: 16 });
+
+          this.map.on("locationfound", (e) => {
+            L.marker(e.latlng).addTo(this.map).bindPopup("現在地").openPopup();
+          });
+        }
       }
     }
   }
@@ -115,10 +129,23 @@ export default class extends Controller {
         iconAnchor: [35, 60],
         popupAnchor: [0, -60]
       });
-      this.marker = L.marker([lat, lng], { icon: shopIcon }).addTo(this.map);
+      this.marker = L.marker([lat, lng], { icon: shopIcon, draggable: true }).addTo(this.map);
     }
     this.latitudeTarget.value = lat;
     this.longitudeTarget.value = lng;
+  }
+
+  // ページの種類を判別するためのメソッド
+  isPostPage() {
+    return window.location.pathname.includes("new");
+  }
+
+  isEditPage() {
+    return window.location.pathname.includes("edit");
+  }
+
+  isDetailPage() {
+    return !this.isPostPage() && !this.isEditPage();
   }
 
   connect() {
