@@ -1,0 +1,90 @@
+<%= render "shared/header" %>
+
+<h1><%= @shop.shop_name %> を編集</h1>
+
+<%= form_with model: @shop, local: true do |form| %>
+  <h2>お店の基本情報</h2>
+
+  <div id="map" style="height: 400px;" data-controller="map" data-map-latitude-target="latitude" data-map-longitude-target="longitude">
+    <%= hidden_field_tag :latitude, @shop.latitude, id: "shop_latitude", data: { map_target: "latitude" } %>
+    <%= hidden_field_tag :longitude, @shop.longitude, id: "shop_longitude", data: { map_target: "longitude" } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :shop_name, "店名", class: 'form-label' %>
+    <%= form.text_field :shop_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address, "住所", class: 'form-label' %>
+    <%= form.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :opening_hours, "営業時間", class: 'form-label' %>
+    <%= form.text_field :opening_hours, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :closed_days, "定休日", class: 'form-label' %>
+    <%= form.text_field :closed_days, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone_number, "電話番号", class: 'form-label' %>
+    <%= form.text_field :phone_number, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :additional_info, "追加情報", class: 'form-label' %>
+    <%= form.text_area :additional_info, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price_range, "価格帯", class: 'form-label' %>
+    <div class="radio-group">
+      <%= form.radio_button :price_range, 'luxury', class: 'custom-radio' %>
+      <%= form.label :price_range_luxury, "高級" %>
+      <%= form.radio_button :price_range, 'standard', class: 'custom-radio' %>
+      <%= form.label :price_range_standard, "スタンダード" %>
+      <%= form.radio_button :price_range, 'reasonable', class: 'custom-radio' %>
+      <%= form.label :price_range_reasonable, "リーズナブル" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :wifi, "WiFi", class: 'form-label' %>
+    <div class="radio-group">
+      <%= form.radio_button :wifi, true, class: 'custom-radio' %>
+      <%= form.label :wifi_true, "あり" %>
+      <%= form.radio_button :wifi, false, class: 'custom-radio' %>
+      <%= form.label :wifi_false, "なし" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :smoking, "タバコ", class: 'form-label' %>
+    <div class="radio-group">
+      <%= form.radio_button :smoking, 'indoor_allowed', class: 'custom-radio' %>
+      <%= form.label :smoking_indoor, "店内で喫煙可" %>
+      <%= form.radio_button :smoking, 'heated_only', class: 'custom-radio' %>
+      <%= form.label :smoking_heated, "加熱式のみ店内可" %>
+      <%= form.radio_button :smoking, 'outdoor_allowed', class: 'custom-radio' %>
+      <%= form.label :smoking_outdoor, "店外でなら喫煙可" %>
+      <%= form.radio_button :smoking, 'no_smoking', class: 'custom-radio' %>
+      <%= form.label :smoking_none, "喫煙不可" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :payment_methods, "支払い方法（複数選択可）" %>
+    <div class="checkbox-group">
+      <%= check_box_tag 'shop[payment_methods][]', 'cash', @shop.payment_methods&.include?('cash') %> 現金<br>
+      <%= check_box_tag 'shop[payment_methods][]', 'credit_card', @shop.payment_methods&.include?('credit_card') %> クレジットカード<br>
+      <%= check_box_tag 'shop[payment_methods][]', 'electronic_money', @shop.payment_methods&.include?('electronic_money') %> 電子マネー<br>
+      <%= check_box_tag 'shop[payment_methods][]', 'qr_code', @shop.payment_methods&.include?('qr_code') %> QRコード決済<br>
+    </div>
+  </div>
+
+  <%= form.submit "保存する", class: "btn btn-primary" %>
+<% end %>

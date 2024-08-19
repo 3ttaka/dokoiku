@@ -74,6 +74,10 @@ class ShopsController < ApplicationController
     end
   end
 
+  def edit
+    @shop = Shop.find(params[:id])
+  end
+
   private
   def shop_params
     permitted_params = params.require(:shop_review).permit(
