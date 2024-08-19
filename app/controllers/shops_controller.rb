@@ -65,7 +65,7 @@ class ShopsController < ApplicationController
   end
 
   def create
-    @shop_review = ShopReview.new(shop_params)
+    @shop_review = ShopReview.new(shop_review_params)
     if @shop_review.valid?
       @shop_review.save
       redirect_to root_path, notice: 'お店の情報とレビューが投稿されました。'
@@ -78,12 +78,30 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
   end
 
+  def update
+    @shop = Shop.find(params[:id])
+    if @shop.update(shop_params)
+      redirect_to shop_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
-  def shop_params
+  def shop_review_params
     permitted_params = params.require(:shop_review).permit(
       :shop_name, :cuisine_type, :closed_days, :opening_hours, :address, :phone_number, :additional_info, :wifi, :smoking, :latitude, :longitude,:price_range,
       :cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :description, payment_methods: []
     )
+    permitted_params.merge(user_id: current_user.id, payment_methods: permitted_params[:payment_methods].join(','))
+  end
+  
+  def shop_params
+    permitted_params = params.require(:shop).permit(
+      :shop_name, :cuisine_type, :closed_days, :opening_hours, :address, :phone_number, :additional_info, :wifi, :smoking, :latitude, :longitude, :price_range,
+      payment_methods: []
+    )
+    
     permitted_params.merge(user_id: current_user.id, payment_methods: permitted_params[:payment_methods].join(','))
   end
   
