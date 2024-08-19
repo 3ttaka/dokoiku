@@ -20,7 +20,7 @@
             </li>
           <% end %>
           <li class="nav-item">
-            <%= link_to '新しいお店を投稿', new_shop_path, class: "nav-link post-shop" %>
+            <%= link_to '新しいお店を投稿', new_shop_path, data: { turbo: false }, class: "nav-link post-shop" %>
           </li>
         </ul>
       </div>
