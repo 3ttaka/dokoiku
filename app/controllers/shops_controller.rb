@@ -87,6 +87,12 @@ class ShopsController < ApplicationController
     end
   end
 
+  def destroy
+    shop = Shop.find(params[:id])
+    shop.destroy
+    redirect_to root_path
+  end
+
   private
   def shop_review_params
     permitted_params = params.require(:shop_review).permit(

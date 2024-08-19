@@ -1,6 +1,6 @@
 class Shop < ApplicationRecord
   belongs_to :user
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   def self.search(search)
     if search != ""
       Shop.where('shop_name LIKE(?)', "%#{search}%")
