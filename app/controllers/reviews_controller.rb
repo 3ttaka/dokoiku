@@ -17,6 +17,16 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
+  def destroy
+    @review = Review.find(params[:id])
+    if current_user.id == @review.user_id
+      @review.destroy
+      redirect_to root_path
+    else
+      redirect_to review_path(@review.id)
+    end
+  end
+
   private
   def review_params
     params.require(:review).permit(:cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :description, images: []).merge(user_id: current_user.id, shop_id: params[:shop_id])

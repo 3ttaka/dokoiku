@@ -1,0 +1,28 @@
+<% if @shops.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>お店の名前</th>
+        <th>住所</th>
+        <th>営業時間</th>
+        <th>定休日</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shops.each do |shop| %>
+        <% shop.reviews.each do |review| %>
+          <tr>
+            <td><%= shop.shop_name %></td>
+            <td><%= shop.address %></td>
+            <td><%= shop.opening_hours %></td>
+            <td><%= shop.closed_days %></td>
+            <td><%= link_to 'レビューを見る', shop_review_path(shop, review) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>該当するお店が見つかりませんでした。</p>
+<% end %>

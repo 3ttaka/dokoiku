@@ -1,0 +1,36 @@
+<%= render "shared/header" %>
+
+<div class='user-details'>
+  <h1 class='user-details-header'>ユーザー情報</h1>
+
+  <div class='user-details-group'>
+    <label class="user-details-label">ニックネーム</label>
+    <p class="user-details-value"><%= @user.nickname %></p>
+  </div>
+
+  <div class='user-details-group'>
+    <label class="user-details-label">メールアドレス</label>
+    <p class="user-details-value"><%= @user.email %></p>
+  </div>
+
+  <div class='user-details-group'>
+    <label class="user-details-label">性別</label>
+    <p class="user-details-value"><%= @user.gender.name %></p>
+  </div>
+
+  <div class='user-details-group'>
+    <label class="user-details-label">年代</label>
+    <p class="user-details-value"><%= @user.age_group.name %></p>
+  </div>
+
+  <div class='user-details-group'>
+    <label class="user-details-label">プロフィール</label>
+    <p class="user-details-value"><%= @user.profile.presence || "未設定" %></p>
+  </div>
+
+  <div class='actions'>
+    <%= link_to '編集する', edit_user_path, class: 'btn btn-secondary' %>
+    <%= link_to 'レビューしたお店を見る', users_path, class: 'btn btn-secondary' %>
+  </div>
+</div>
+
