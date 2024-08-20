@@ -17,6 +17,19 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
+  def edit
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to shop_review_path(@review)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @review = Review.find(params[:id])
     if current_user.id == @review.user_id
