@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get 'reviews', to: 'shops#reviews'
       get 'photos', to: 'shops#photos'
     end
-    resources :reviews, only: [:new, :create, :show]
+    resources :reviews, only: [:new, :create, :show, :destroy]
   end
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :index]
 end

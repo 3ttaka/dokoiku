@@ -156,7 +156,7 @@
     </div>
   </div>
 
-  <h2>説明</h2>
+  <h2>コメント</h2>
   <p><%= @review.description %></p>
 
   <% if @review.images.attached? %>
@@ -170,5 +170,7 @@
 
   <div class="actions">
     <%= link_to 'レビュー 一覧に戻る', reviews_shop_path(@review.shop), class: 'btn btn-secondary' %>
+    <%= link_to 'レビューしたお店一覧に戻る', users_path, class: 'btn btn-secondary' %>
+    <%= link_to 'レビューを削除する', [@review.shop, @review], data: {turbo_method: :delete},class: 'btn btn-secondary'%>
   </div>
 </div>

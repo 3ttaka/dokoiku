@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @shops = current_user.reviews.includes(:shop).map(&:shop).uniq
+  end
+
   private
   def user_params
     params.require(:user).permit(:nickname, :email, :password, :password_confirmation, :gender_id, :age_group_id, :profile)
