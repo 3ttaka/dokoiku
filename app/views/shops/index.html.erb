@@ -1,3 +1,4 @@
+<%= render "shared/header" %>
 <div id="map" data-controller="map">
   <input type="hidden" id="shop_latitudes" value="<%= @shops.map(&:latitude).to_json %>" data-map-target="shopLatitudes">
   <input type="hidden" id="shop_longitudes" value="<%= @shops.map(&:longitude).to_json %>" data-map-target="shopLongitudes">
@@ -31,3 +32,5 @@
 <% else %>
   <p>該当するお店が見つかりませんでした。</p>
 <% end %>
+
+<%= render "shared/footer" %>

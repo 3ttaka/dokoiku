@@ -1,3 +1,15 @@
+<div class="image-slider">
+    <div class="slider-content">
+      <img src="<%= asset_path('iStock-1460592275.jpg') %>" alt="Image 1">
+      <img src="<%= asset_path('iStock-1227451753.jpg') %>" alt="Image 2">
+      <img src="<%= asset_path('iStock-1161794704.jpg') %>" alt="Image 3">
+      <img src="<%= asset_path('iStock-1161790323.jpg') %>" alt="Image 4">
+      <img src="<%= asset_path('iStock-1150749127.jpg') %>" alt="Image 5">
+      <img src="<%= asset_path('iStock-1128235080.jpg') %>" alt="Image 6">
+      <img src="<%= asset_path('iStock-1011313826.jpg') %>" alt="Image 7">
+      <img src="<%= asset_path('iStock-975500428.jpg') %>" alt="Image 8">
+  </div>
+</div>
 <%= render "shared/header" %>
 
 <h1>お店を検索</h1>
@@ -154,5 +166,7 @@
     </div>
   </div>
 
-  <%= form.submit "検索", class: "search-btn" %>
+  <%= form.submit "検索", class: "atmosphere-search-btn" %>
 <% end %>
+
+<%= render "shared/footer" %>

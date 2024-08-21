@@ -4,11 +4,20 @@ body {
 
 form {
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* スライダーの上に表示されるようにする */
+  z-index: 2; /* スライダーより前面に表示 */
+}
+
+/* h1タグの余白を調整して、ヘッダーから距離を確保 */
+h1 {
+  margin-top: 20px;
+  font-size: 2em;
+  text-align: center;
 }
 
 h2 {
@@ -71,3 +80,64 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
   background-color: #0056b3;
 }
+
+.search-input {
+  width: 80%; /* これを指定することで、フォームの幅に合わせて入力欄が広がります */
+  padding: 12px;
+  font-size: 1.2em;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
+}
+
+.atmosphere-search-btn {
+  display: block;
+  margin: 20px auto 0; /* 中央に配置 */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* 写真を表示するためのスライダー */
+.image-slider {
+  position: fixed;
+  top: 49%; /* ブラウザの縦の真ん中 */
+  left: 0;
+  width: 100%; /* 画面の幅全体を占める */
+  height: 50vh; /* 画面の高さの50% */
+  transform: translateY(-50%); /* 縦方向に真ん中に配置 */
+  overflow: hidden; /* スライダーからはみ出す画像を隠す */
+  z-index: 1; /* 背景としてフォームの後ろに配置 */
+}
+
+.slider-content {
+  display: flex;
+  width: calc(100% * 6); /* 画像のセットを2回繰り返すための幅 */
+  height: 100%;
+  animation: slideImages 50s linear infinite; /* アニメーションを40秒で設定 */
+}
+
+.slider-content img {
+  height: 100%; /* スライダーの高さに合わせる */
+  width: auto; /* アスペクト比を維持しながら幅を自動調整 */
+  flex-shrink: 0; /* 画像が縮まないようにする */
+  object-fit: contain; /* 画像が拡大されずに表示されるように調整 */
+}
+
+@keyframes slideImages {
+  0% {
+    transform: translateX(0); /* スライドの開始位置 */
+  }
+  100% {
+    transform: translateX(-30%); /* スライドの終了位置 */
+  }
+}
+
+
+
