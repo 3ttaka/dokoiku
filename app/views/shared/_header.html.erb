@@ -1,28 +1,36 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand app-name" href="<%= root_path%>">ドコイク？</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
+    <div class="wrapper">
+      <a class="navbar-brand app-name" href="<%= root_path%>">
+        <%= image_tag 'ドコイク？.png', alt: 'ドコイク？', class: 'brand-logo' %>
+      </a>
+      <div class="nav-links">
+        <div class="user-links">
+          <ul class="navbar-nav">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to current_user.nickname, "/users/#{current_user.id}", class: "nav-link user-nickname" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link logout" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'ログイン', new_user_session_path, class: "nav-link login" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '新規登録', new_user_registration_path, class: "nav-link sign-up" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <% if user_signed_in? %>
+          <ul class="navbar-nav">
             <li class="nav-item">
-              <%= link_to current_user.nickname, "/users/#{current_user.id}", class: "nav-link user-nickname" %>
+              <%= link_to '新しいお店を投稿', new_shop_path, data: { turbo: false }, class: "nav-link post-shop" %>
             </li>
-            <li class="nav-item">
-              <%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link logout" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to 'ログイン', new_user_session_path, class: "nav-link login" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '新規登録', new_user_registration_path, class: "nav-link sign-up" %>
-            </li>
-          <% end %>
-          <li class="nav-item">
-            <%= link_to '新しいお店を投稿', new_shop_path, data: { turbo: false }, class: "nav-link post-shop" %>
-          </li>
-        </ul>
+          </ul>
+        <% end %>
       </div>
     </div>
   </nav>
