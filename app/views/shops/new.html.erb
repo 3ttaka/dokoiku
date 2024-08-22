@@ -9,12 +9,12 @@
 
     <div class="form-group">
       <%= form.label :shop_name, "お店の名前（必須）" %>
-      <%= form.text_field :shop_name, class: "form-control", placeholder:"例：日本料理　山田　東京本店",required: true %>
+      <%= form.text_field :shop_name, class: "form-control", placeholder:"例：山田屋　東京本店",required: true %>
     </div>
 
     <div class="form-group">
       <%= form.label :cuisine_type, "料理ジャンル（任意）" %>
-      <%= form.text_field :cuisine_type, class: "form-control", placeholder:"例：日本料理" %>
+      <%= form.text_field :cuisine_type, class: "form-control", placeholder:"例：海鮮料理" %>
     </div>
 
     <div class="form-group">
@@ -39,7 +39,7 @@
 
     <div class="form-group">
       <%= form.label :additional_info, "追加情報（任意）" %>
-      <%= form.text_area :additional_info, class: "form-control" %>
+      <%= form.text_area :additional_info, class: "form-control", placeholder:"追加したいお店の情報があれば記入してください"%>
     </div>
 
     <div class="form-group">
@@ -196,7 +196,19 @@
     </div>
 
     <div class="form-group">
+      <%= form.label :description, "コメント", class: 'form-label' %>
+      <%= form.text_area :description, class: 'form-control', placeholder:"コメントを記入してください", rows: 5 %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :images, "画像をアップロード" %>
+      <%= form.file_field :images, multiple: true, accept: "image/*" %>
+    </div>
+
+    <div class="form-group">
       <%= form.submit "投稿する", class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>
+
+<%= render "shared/footer" %>
