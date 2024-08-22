@@ -1,10 +1,11 @@
 <%= render "shared/header" %>
-<div class="actions">
-    <%= link_to '写真一覧を見る', photos_shop_path(@shop), class: 'btn btn-secondary' %>
-    <%= link_to 'レビュー 一覧を見る', reviews_shop_path(@shop), class: 'btn btn-primary' %>
-    <%= link_to 'レビューを投稿する', new_shop_review_path(@shop), class: 'btn btn-primary' %>
-</div>
 <div class="container">
+  <div class="tab-actions">
+    <%= link_to '写真一覧を見る', photos_shop_path(@shop), class: 'tab-btn' %>
+    <%= link_to 'レビュー 一覧を見る', reviews_shop_path(@shop), class: 'tab-btn' %>
+    <%= link_to 'レビューを投稿する', new_shop_review_path(@shop), class: 'tab-btn' %>
+  </div>
+
   <h1><%= @shop.shop_name %> の詳細</h1>
   <div id="map" style="height: 400px;" data-controller="map" data-map-latitude-target="latitude" data-map-longitude-target="longitude">
     <%= hidden_field_tag :latitude, @shop.latitude, id: "shop_latitude", data: { map_target: "latitude" } %>
@@ -180,4 +181,4 @@
   </div>
 </div>
 
-
+<%= render "shared/footer" %>

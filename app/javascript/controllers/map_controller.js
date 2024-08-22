@@ -83,7 +83,7 @@ export default class extends Controller {
           this.latitudeTarget.value = e.latlng.lat;
           this.longitudeTarget.value = e.latlng.lng;
           this.map.setView(e.latlng, 16);
-        });
+        
 
         this.map.on("click", this.onMapClick.bind(this));
         this.marker?.on("dragend", (event) => {
@@ -91,6 +91,7 @@ export default class extends Controller {
           const position = marker.getLatLng();
           this.latitudeTarget.value = position.lat;
           this.longitudeTarget.value = position.lng;
+        });
         });
       } else {
         // 詳細画面と編集画面

@@ -1,10 +1,11 @@
 .container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 h1 {
@@ -86,12 +87,51 @@ h1 {
 }
 
 .actions {
-  margin-top: 20px;
+  margin-top: 40px;
   display: flex;
   justify-content: space-between;
+  gap: 10px; /* ボタン同士の間隔を追加 */
 }
 
 .actions .btn {
-  font-size: 1.1em;
-  padding: 10px 20px;
+  background-color: #007bff; /* ボタンの背景色 */
+  color: #fff; /* ボタンの文字色 */
+  padding: 10px 20px; /* ボタンの内側の余白を設定 */
+  font-size: 1em; /* ボタンの文字サイズを設定 */
+  border-radius: 5px; /* ボタンの角を丸くする */
+  cursor: pointer; /* マウスポインタをポインタに変更 */
+  text-align: center; /* テキストを中央に配置 */
+  transition: background-color 0.3s ease; /* ホバー時のエフェクトを設定 */
+  text-decoration: none;
 }
+
+.actions .btn:hover {
+  background-color: #0056b3; /* ホバー時の背景色を変更 */
+}
+
+.tab-actions {
+  position: absolute;
+  top: -25px; /* コンテナの上に配置 */
+  right: 20px; /* コンテナの右端に配置 */
+  display: flex;
+  gap: 6px; /* ボタン同士の間隔 */
+}
+
+.tab-btn {
+  background-color: #fff;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 4px 4px 0 0; /* 角丸にしてタブのようにする */
+  text-decoration: none;
+  font-size: 1em;
+  transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
+
+.tab-btn:hover {
+  transform: translateY(-3px); /* カーソルを合わせたときに浮き上がる */
+  background-color: #f0f0f0; /* ホバー時の背景色 */
+  border-color: #aaa;
+}
+
