@@ -24,7 +24,7 @@
           <td><%= shop.address %></td>
           <td><%= shop.opening_hours %></td>
           <td><%= shop.closed_days %></td>
-          <td><%= link_to '詳細を見る', shop_path(shop) %></td>
+          <td><%= link_to '詳細を見る', shop_path(shop), class: 'btn btn-primary' %></td>
         </tr>
       <% end %>
     </tbody>
