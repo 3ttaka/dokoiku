@@ -97,7 +97,7 @@ class ShopsController < ApplicationController
   def shop_review_params
     permitted_params = params.require(:shop_review).permit(
       :shop_name, :cuisine_type, :closed_days, :opening_hours, :address, :phone_number, :additional_info, :wifi, :smoking, :latitude, :longitude,:price_range,
-      :cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :description, payment_methods: []
+      :cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :description, payment_methods: [],images: []
     )
     permitted_params.merge(user_id: current_user.id, payment_methods: permitted_params[:payment_methods].join(','))
   end

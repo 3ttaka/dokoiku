@@ -2,7 +2,7 @@ class ShopReview
   include ActiveModel::Model
 
   attr_accessor :shop_name, :cuisine_type, :closed_days, :opening_hours, :address, :phone_number, :additional_info, :wifi, :smoking, :latitude, :longitude, :payment_methods, :price_range
-  attr_accessor :cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :price_range, :description
+  attr_accessor :cleanliness, :space, :lighting, :music, :vibrancy, :order_speed, :service_style, :conversation, :price_range, :description,:images
   attr_accessor :user_id
 
   validates :shop_name, :closed_days, :opening_hours, :address,:payment_methods, :price_range, presence: true
@@ -32,7 +32,7 @@ class ShopReview
       longitude: longitude
     )
 
-    Review.create(
+    review = Review.create(
       cleanliness: cleanliness,
       space: space,
       lighting: lighting,
@@ -45,5 +45,11 @@ class ShopReview
       user_id: user_id,
       shop_id: shop.id
     )
+
+    if images.present?
+      images.each do |image|
+        review.images.attach(image)
+      end
+    end
   end
 end
