@@ -28,7 +28,7 @@ export default class extends Controller {
     }).addTo(this.map);
 
     const shopIcon = L.icon({
-      iconUrl: '/assets/images/sdesign_00247.webp',
+      iconUrl: '/assets/sdesign_00247.webp',
       iconSize: [70, 60],
       iconAnchor: [35, 60],
       popupAnchor: [0, -60]
