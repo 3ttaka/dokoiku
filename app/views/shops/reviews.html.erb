@@ -1,3 +1,4 @@
+<%= render "shared/header" %>
 <div class="container">
   <h1><%= @shop.shop_name %> のレビュー 一覧</h1>
 
@@ -28,5 +29,7 @@
     <p>まだレビューが投稿されていません。</p>
   <% end %>
 
-  <%= link_to 'お店の詳細に戻る', shop_path(@shop), class: 'btn btn-secondary' %>
+  <%= link_to 'お店の詳細に戻る', shop_path(@shop), class: 'btn btn-primary' %>
 </div>
+
+<%= render "shared/footer" %>
