@@ -147,5 +147,5 @@ https://dokoiku-1a0q.onrender.com
 %yarn install
 
 # 工夫したポイント
-- SD法による評価、それによる検索方法
+- SD法によって評価し、集まった評価の平均を出してお店の評価にする方法
 - JavaScriptライブラリ「leaflet」による地図表示
