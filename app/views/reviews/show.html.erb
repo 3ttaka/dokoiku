@@ -1,4 +1,4 @@
-<!-- reviews/show.html.erb -->
+<%= render "shared/header" %>
 <div class="container">
   <h1><%= @review.shop.shop_name %> のレビュー詳細</h1>
 
@@ -169,9 +169,14 @@
   <% end %>
 
   <div class="actions">
+    <% if user_signed_in? %>
+      <% if current_user.id == @review.shop.user_id %>
+        <%= link_to 'レビューを編集する', edit_shop_review_path, class: 'btn btn-secondary' %>
+        <%= link_to 'レビューを削除する', [@review.shop, @review], data: {turbo_method: :delete},class: 'btn btn-secondary'%>
+      <% else %>
+      <% end %>
+    <% end %>
     <%= link_to 'レビュー 一覧に戻る', reviews_shop_path(@review.shop), class: 'btn btn-secondary' %>
-    <%= link_to 'レビューしたお店一覧に戻る', users_path, class: 'btn btn-secondary' %>
-    <%= link_to 'レビューを編集する', edit_shop_review_path, class: 'btn btn-secondary' %>
-    <%= link_to 'レビューを削除する', [@review.shop, @review], data: {turbo_method: :delete},class: 'btn btn-secondary'%>
   </div>
 </div>
+<%= render "shared/footer" %>
