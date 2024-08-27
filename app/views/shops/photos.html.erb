@@ -1,4 +1,4 @@
-<!-- app/views/shops/photos.html.erb -->
+<%= render "shared/header" %>
 <div class="container">
   <h1><%= @shop.shop_name %> の写真一覧</h1>
 
@@ -16,3 +16,4 @@
     <%= link_to 'お店の詳細に戻る', shop_path(@shop), class: 'btn btn-secondary' %>
   </div>
 </div>
+<%= render "shared/footer" %>
