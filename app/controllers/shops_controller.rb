@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
 
   def search
     
@@ -76,6 +76,9 @@ class ShopsController < ApplicationController
 
   def edit
     @shop = Shop.find(params[:id])
+    if current_user.id != @shop.user_id
+      redirect_to shop_path(@shop)
+    end
   end
 
   def update
@@ -89,8 +92,12 @@ class ShopsController < ApplicationController
 
   def destroy
     shop = Shop.find(params[:id])
-    shop.destroy
-    redirect_to root_path
+    if current_user.id == shop.user_id
+      shop.destroy
+      redirect_to root_path
+    else
+      redirect_to shop_path(shop.id)
+    end
   end
 
   private

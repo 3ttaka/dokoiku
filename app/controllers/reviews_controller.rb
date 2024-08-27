@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+
   def new
     @review = Review.new
     @shop = Shop.find(params[:shop_id])
@@ -19,6 +21,9 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    if current_user.id != @review.user_id
+      redirect_to shop_review_path(@review)
+    end
   end
 
   def update
@@ -36,7 +41,7 @@ class ReviewsController < ApplicationController
       @review.destroy
       redirect_to root_path
     else
-      redirect_to review_path(@review.id)
+      redirect_to shop_review_path(@review)
     end
   end
 
