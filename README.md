@@ -140,6 +140,8 @@ https://dokoiku-1a0q.onrender.com
 - **ホスティングサービス**: Render（本番環境）
 - **データベース**: PostgreSQL
 - **ローカル開発環境**: MySQL（開発・テスト用）
+- **ファイルストレージ**: Amazon S3
+  - **ファイルアップロード**: Active Storageを使用してS3に画像を保存
 
 # ローカルでの動作方法
 以下のコマンドを順に実行
