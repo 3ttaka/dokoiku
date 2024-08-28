@@ -18,6 +18,11 @@
     </div>
 
     <div class="form-group">
+      <%= form.label :address, "住所（必須）" %>
+      <%= form.text_field :address, class: "form-control", placeholder:"例: 東京都○◯区○◯1-11-11",required: true %>
+    </div>
+
+    <div class="form-group">
       <%= form.label :opening_hours, "営業時間（必須）" %>
       <%= form.text_field :opening_hours, class: "form-control", placeholder:"例: 10:00~15:00,16:00~22:00", required: true %>
     </div>
@@ -25,11 +30,6 @@
     <div class="form-group">
       <%= form.label :closed_days, "定休日（必須）" %>
       <%= form.text_field :closed_days, class: "form-control", placeholder:"例：月曜日、祝日", required: true %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :address, "住所（必須）" %>
-      <%= form.text_field :address, class: "form-control", placeholder:"例: 東京都○◯区○◯1-11-11",required: true %>
     </div>
 
     <div class="form-group">
