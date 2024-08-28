@@ -7,7 +7,13 @@ https://dokoiku-1a0q.onrender.com
 # テスト用アカウント
 - Basic認証パスワード:2222
 - Basic認証ID:admin
+## ユーザー１
+- ユーザー名:山田　太郎
 - メールアドレス:test@test.com
+- パスワード:a111111
+## ユーザー２
+- ユーザー名:佐藤　二郎
+- メールアドレス:test@com
 - パスワード:a111111
 
 # 利用方法
