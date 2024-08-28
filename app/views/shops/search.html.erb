@@ -133,11 +133,11 @@
   <div class="form-group">
     <%= form.label :price_range, "価格帯", class: 'form-label' %>
     <div class="radio-group">
-      <%= form.radio_button :price_range, 'luxury' ,class: 'custom-radio'%>
-      <%= form.label :price_range_luxury, "高級" %>
-      <%= form.radio_button :price_range, 'standard' ,class: 'custom-radio'%>
+      <%= form.radio_button :price_range, 'ラグジュアリー' ,class: 'custom-radio'%>
+      <%= form.label :price_range_luxury, "ラグジュアリー" %>
+      <%= form.radio_button :price_range, 'スタンダード' ,class: 'custom-radio'%>
       <%= form.label :price_range_standard, "スタンダード" %>
-      <%= form.radio_button :price_range, 'reasonable',class: 'custom-radio' %>
+      <%= form.radio_button :price_range, '',class: 'custom-radio' %>
       <%= form.label :price_range_reasonable, "リーズナブル" %>
     </div>
   </div>
@@ -145,9 +145,9 @@
   <div class="form-group">
     <%= form.label :wifi, "WiFi", class: 'form-label' %>
     <div class="radio-group">
-      <%= form.radio_button :wifi, true ,class: 'custom-radio'%>
+      <%= form.radio_button :wifi, 'あり' ,class: 'custom-radio'%>
       <%= form.label :wifi, "あり" %>
-      <%= form.radio_button :wifi, false ,class: 'custom-radio'%>
+      <%= form.radio_button :wifi, 'なし' ,class: 'custom-radio'%>
       <%= form.label :wifi, "なし" %>
     </div>
   </div>
@@ -155,13 +155,13 @@
   <div class="form-group">
     <%= form.label :smoking, "タバコ", class: 'form-label' %>
     <div class="radio-group">
-      <%= form.radio_button :smoking, 'indoor_allowed',class: 'custom-radio'%>
+      <%= form.radio_button :smoking, '店内で喫煙可',class: 'custom-radio'%>
       <%= form.label :smoking_indoor, "店内で喫煙可" %>
-      <%= form.radio_button :smoking, 'heated_only',class: 'custom-radio' %>
+      <%= form.radio_button :smoking, '加熱式のみ店内可',class: 'custom-radio' %>
       <%= form.label :smoking_heated, "加熱式のみ店内可" %>
-      <%= form.radio_button :smoking, 'outdoor_allowed',class: 'custom-radio' %>
+      <%= form.radio_button :smoking, '店外でなら喫煙可',class: 'custom-radio' %>
       <%= form.label :smoking_outdoor, "店外でなら喫煙可" %>
-      <%= form.radio_button :smoking, 'no_smoking',class: 'custom-radio' %>
+      <%= form.radio_button :smoking, '喫煙不可',class: 'custom-radio' %>
       <%= form.label :smoking_none, "喫煙不可" %>
     </div>
   </div>

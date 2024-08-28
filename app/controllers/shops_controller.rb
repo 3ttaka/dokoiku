@@ -32,7 +32,7 @@ class ShopsController < ApplicationController
     end
 
     if params[:wifi].present?
-      @shops = @shops.select { |shop| shop.wifi == ActiveModel::Type::Boolean.new.cast(params[:wifi]) }
+      @shops = @shops.select { |shop| shop.wifi == params[:wifi] }
     end
 
     if params[:price_range].present?

@@ -49,10 +49,10 @@
   <div class="form-group">
     <%= form.label :payment_methods, "支払い方法（複数選択可）" %>
     <div class="checkbox-group">
-      <%= check_box_tag 'shop[payment_methods][]', '現金', @shop.payment_methods&.include?('cash') %> 現金<br>
-      <%= check_box_tag 'shop[payment_methods][]', 'クレジットカード', @shop.payment_methods&.include?('credit_card') %> クレジットカード<br>
-      <%= check_box_tag 'shop[payment_methods][]', '電子マネー', @shop.payment_methods&.include?('electronic_money') %> 電子マネー<br>
-      <%= check_box_tag 'shop[payment_methods][]', 'QRコード決済', @shop.payment_methods&.include?('qr_code') %> QRコード決済<br>
+      <%= check_box_tag 'shop[payment_methods][]', '現金', @shop.payment_methods&.include?('現金') %> 現金<br>
+      <%= check_box_tag 'shop[payment_methods][]', 'クレジットカード', @shop.payment_methods&.include?('クレジットカード') %> クレジットカード<br>
+      <%= check_box_tag 'shop[payment_methods][]', '電子マネー', @shop.payment_methods&.include?('電子マネー') %> 電子マネー<br>
+      <%= check_box_tag 'shop[payment_methods][]', 'QRコード決済', @shop.payment_methods&.include?('QRコード決済') %> QRコード決済<br>
     </div>
   </div>
 
@@ -71,9 +71,9 @@
   <div class="form-group">
     <%= form.label :wifi, "WiFi", class: 'form-label' %>
     <div class="radio-group">
-      <%= form.radio_button :wifi, true, class: 'custom-radio' %>
+      <%= form.radio_button :wifi, 'あり', class: 'custom-radio' %>
       <%= form.label :wifi_true, "あり" %>
-      <%= form.radio_button :wifi, false, class: 'custom-radio' %>
+      <%= form.radio_button :wifi, 'なし', class: 'custom-radio' %>
       <%= form.label :wifi_false, "なし" %>
     </div>
   </div>
@@ -96,3 +96,5 @@
     <%= form.submit "保存する", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= render "shared/footer" %>
