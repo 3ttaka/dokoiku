@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if @review.save
-      redirect_to shop_path(@review.shop), notice: 'レビューが投稿されました。'
+      redirect_to shop_path(@review.shop)
     else
       render :new, status: :unprocessable_entity
     end

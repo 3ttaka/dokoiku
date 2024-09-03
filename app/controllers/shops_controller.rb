@@ -68,7 +68,7 @@ class ShopsController < ApplicationController
     @shop_review = ShopReview.new(shop_review_params)
     if @shop_review.valid?
       @shop_review.save
-      redirect_to root_path, notice: 'お店の情報とレビューが投稿されました。'
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end

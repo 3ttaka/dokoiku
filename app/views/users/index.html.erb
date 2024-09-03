@@ -1,5 +1,7 @@
+<%= render "shared/header" %>
+
 <% if @shops.any? %>
-  <table class="table">
+  <table class="user-table">
     <thead>
       <tr>
         <th>お店の名前</th>
@@ -17,7 +19,7 @@
             <td><%= shop.address %></td>
             <td><%= shop.opening_hours %></td>
             <td><%= shop.closed_days %></td>
-            <td><%= link_to 'レビューを見る', shop_review_path(shop, review) %></td>
+            <td><%= link_to 'レビューを見る', shop_review_path(shop, review), class: 'btn btn-primary'  %></td>
           </tr>
         <% end %>
       <% end %>
@@ -26,3 +28,4 @@
 <% else %>
   <p>該当するお店が見つかりませんでした。</p>
 <% end %>
+<%= render "shared/footer" %>
