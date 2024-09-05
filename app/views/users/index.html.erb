@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <% @shops.each do |shop| %>
-        <% shop.reviews.each do |review| %>
+        <% shop.reviews.where(user_id: current_user.id).each do |review| %>
           <tr>
             <td><%= shop.shop_name %></td>
             <td><%= shop.address %></td>

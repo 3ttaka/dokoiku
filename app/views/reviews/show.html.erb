@@ -170,7 +170,7 @@
 
   <div class="actions">
     <% if user_signed_in? %>
-      <% if current_user.id == @review.shop.user_id %>
+      <% if current_user.id == @review.user_id %>
         <%= link_to 'レビューを編集する', edit_shop_review_path, class: 'btn btn-secondary' %>
         <%= link_to 'レビューを削除する', [@review.shop, @review], data: {turbo_method: :delete},class: 'btn btn-secondary'%>
       <% else %>
